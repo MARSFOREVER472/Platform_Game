@@ -107,3 +107,44 @@ class Jugador
 }
 
 Jugador.prototype.size = new Vec(0.8, 1.5);
+
+// THE "create" METHOD LOOKS AT THE CHARACTER THAT THE LEVEL CONSTRUCTOR PASSES AND CREATES THE APPROPIATE "Lava" ACTOR...
+
+class Lava
+{
+    constructor(posicion, velocidad, reinicio)
+    {
+        this.posicion = posicion;
+        this.velocidad = velocidad;
+        this.reinicio = reinicio;
+    }
+
+    get tipo() 
+    {
+        return "lava";
+    }
+
+    static create(posicion, ch)
+    {
+        if (ch == "=")
+        {
+            return new Lava(posicion, new Vec(2, 0));
+        }
+
+        else 
+
+        if (ch == "|")
+        {
+            return new Lava(posicion, new Vec(0, 2));
+        }
+
+        else
+
+        if (ch == "v")
+        {
+            return new Lava(posicion, new Vec(0, 3));
+        }
+    }
+}
+
+Lava.prototype.size = new Vec(1, 1);
