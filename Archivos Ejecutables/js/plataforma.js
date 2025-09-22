@@ -148,3 +148,29 @@ class Lava
 }
 
 Lava.prototype.size = new Vec(1, 1);
+
+// COIN ACTORS ARE RELATIVELY SIMPLE. THEY MOSTLY JUST SIT IN THEIR PLACE. BUT TO LIVEN UP THE GAME A LITTLE, THEY ARE GIVEN A "wooble", A SLIGHT VERTICAL "BACK-AND-FORTH" MOTION. TO TRACK THIS, A COIN OBJECT STORES A BASE POSITION AS WELL AS A "wobble" PROPERTY THAT TRACKS THE PHASE OF THE BOUNCING MOTION. TOGETHER, THESE DETERMINE THE COIN'S ACTUAL POSITION...
+
+class Monedas
+{
+    constructor(posicion, posicionBase, tambaleo)
+    {
+        this.posicion = posicion;
+        this.posicionBase = posicionBase;
+        this.tambaleo = tambaleo;
+    }
+
+    get tipo()
+    {
+        return "coin";
+    }
+
+    static create(posicion)
+    {
+        let posicionBase = posicion.plus(new Vec(0.2, 0.1));
+        return new Monedas(posicionBase, posicionBase, Math.random() * Math.PI * 2);
+    }
+
+}
+
+Monedas.prototype.size = new Vec(0.6, 0.6);
