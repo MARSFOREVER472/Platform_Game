@@ -40,3 +40,70 @@ class Nivel
         });
     }
 }
+
+// WE'LL USE A "State" CLASS TO TRACK THE STATE OF A RUNNING GAME...
+
+class Estado
+{
+    constructor(nivel, actores, estado)
+    {
+        this.nivel = nivel;
+        this.actores = actores;
+        this.estado = estado;
+    }
+
+    static comenzar(nivel)
+    {
+        return new Estado(nivel, nivel.comienzoActores, "playing");
+    }
+
+    get jugador()
+    {
+        return this.actores.find(a => a.tipo == "player");
+    }
+}
+
+// THIS IS A "Vec" CLASS THAT WE'LL USE FOR OUR TWO-DIMENSIONAL VALUES, SUCH AS THE POSITION AND SIZE OF ACTORS...
+
+class Vec
+{
+    constructor(x, y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    plus(other)
+    {
+        return new Vec(this.x + other.x, this.y + other.y);
+    }
+
+    times(factor)
+    {
+        return new Vec(this.x * factor, this.y * factor);
+    }
+}
+
+// THE "Player" CLASS HAS A "speed" PROPERTY THAT STORES IT'S CURRENT SPEED TO SIMULATE MOMENTUM AND GRAVITY...
+
+class Jugador 
+{
+    constructor(posicion, velocidad)
+    {
+        this.posicion = posicion;
+        this.velocidad = velocidad;
+    }
+
+    get tipo() 
+    {
+        return "player";
+    }
+
+    static create(posicion)
+    {
+        return new Jugador(posicion.plus(new Vec(0, -0.5)),
+                           new Vec(0, 0));
+    }
+}
+
+Jugador.prototype.size = new Vec(0.8, 1.5);
