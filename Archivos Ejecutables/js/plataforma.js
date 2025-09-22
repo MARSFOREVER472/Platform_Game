@@ -174,3 +174,20 @@ class Monedas
 }
 
 Monedas.prototype.size = new Vec(0.6, 0.6);
+
+// WE CAN NOW DEFINE THE "levelChars" OBJECT THAT MAPS PLAN CHARACTERS TO EITHER BACKGROUND GRID TYPES OR ACTOR CLASSES...
+
+const nivelPersonajes = {
+  ".": "empty", "#": "wall", "+": "lava",
+  "@": Jugador, "o": Monedas,
+  "=": Lava, "|": Lava, "v": Lava
+};
+
+// THAT GIVES US ALL THE PARTS NEEDED TO CREATE A LEVEL INSTANCE...
+
+let nivelSimple = new Nivel(planNivelSimple);
+console.log(`${nivelSimple.anchura} by ${nivelSimple.altura}`);
+
+// 22 by 9...
+
+// THE TASK AHEAD IS TO DISPLAY SUCH LEVELS ON THE SCREEN AND TO MODEL TIME AND MOTION INSIDE THEM.
