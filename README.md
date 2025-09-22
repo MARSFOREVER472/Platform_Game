@@ -1,3 +1,3 @@
-# Platform_Game
+# **_Platform_Game_**
 
 ## Create a simple platform game using Javascript!
