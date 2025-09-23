@@ -38,3 +38,15 @@
 {
     background: rgb(64, 64, 64);
 }
+
+/* By adding the level’s current status as a class name to the wrapper, we can style the player actor slightly differently when the game is won or lost by adding a CSS rule that takes effect only when the player has an ancestor element with a given class. */
+
+.lost .player
+{
+    background: rgb(255, 0, 0);
+}
+
+.won .player
+{
+    box-shadow: -4px -7px 8px white, -4px -7px 8px white;
+}

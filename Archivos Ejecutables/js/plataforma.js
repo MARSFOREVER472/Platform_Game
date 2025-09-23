@@ -256,3 +256,13 @@ function dibujarActores(actores)
         return rect;
     }));
 }
+
+// THE "syncState" METHOD IS USED TO MAKE THE DISPLAY SHOW A GIVEN STATE. IT FIRST REMOVES THE OLD ACTOR GRAPHICS, IF ANY, AND THEN REDRAWS THE ACTORS IN THEIR NEW POSITIONS. It may be tempting to try to reuse the DOM elements for actors, but to make that work, we would need a lot of additional bookkeeping to associate actors with DOM elements and to make sure we remove elements when their actors vanish. Since there will typically be only a handful of actors in the game, redrawing all of them is not expensive.
+
+DOMdisplay.prototype.syncState = function(estadoActual)
+{
+    if(this.actorLayer) this.actorLayer.remove();
+    this.actorLayer = dibujarActores(estadoActual.actores);
+    this.dom.className = `game ${estadoActual.estado}`;
+    this.scrollPlayerIntoView(estadoActual);
+}
