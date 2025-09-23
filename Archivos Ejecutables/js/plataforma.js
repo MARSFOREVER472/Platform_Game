@@ -210,3 +210,21 @@ function elemento(nombre, atributos, hijos)
 
     return dom;
 }
+
+// A DISPLAY IS CREATED BY GIVING IT A PARENT ELEMENT TO WHICH IT SHOULD APPEND ITSELF AND A LEVEL OBJECT...
+
+class DOMdisplay
+{
+    constructor(pariente, nivel)
+    {
+        this.dom = elemento("div", {class: "game"}, drawGrid(nivel));
+        this.actorLayer = null;
+        pariente.appendChild(this.dom);
+    }
+
+    clear()
+    {
+        this.dom.Remove();
+    }
+
+}
