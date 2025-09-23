@@ -217,7 +217,7 @@ class DOMdisplay
 {
     constructor(pariente, nivel)
     {
-        this.dom = elemento("div", {class: "game"}, drawGrid(nivel));
+        this.dom = elemento("div", {class: "game"}, dibujarCasilla(nivel));
         this.actorLayer = null;
         pariente.appendChild(this.dom);
     }
@@ -227,4 +227,20 @@ class DOMdisplay
         this.dom.Remove();
     }
 
+}
+
+// OUR COORDINATES AND SIZES ARE TRACKED IN GRID UNITS, WHERE A SIZE OF DISTANCE OF 1 MEANS ONE GRID BLOCK. WHEN SETTING PIXEL SIZES, WE WILL HAVE TO SCALE THESE COORDINATES UP - EVERYTHING IN THE GAME WOULD BE RIDICULOUSLY SMALL AT A SINGLE PIXEL PER SQUARE. THE SCALE CONSTANT GIVES A NUMBER OF PIXELS THAT A SINGLE UNIT TAKES UP ON THE SCREEN...
+
+const escala = 20;
+
+function dibujarCasilla(nivel)
+{
+    return elemento("table", {
+        class: "background",
+        style: `width: ${nivel.width * escala}px`
+    }, ...nivel.filas.map(fila =>
+        elemento("tr", {style: `height: ${escala}px`},
+            ...fila.map(type => elemento("td", {class: type}))
+        ))
+    );
 }
