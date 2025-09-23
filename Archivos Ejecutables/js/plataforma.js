@@ -191,3 +191,22 @@ console.log(`${nivelSimple.anchura} by ${nivelSimple.altura}`);
 // 22 by 9...
 
 // THE TASK AHEAD IS TO DISPLAY SUCH LEVELS ON THE SCREEN AND TO MODEL TIME AND MOTION INSIDE THEM.
+
+// THE FOLLOWING HELPER FUNCTION PROVIDES A SUCCINCT WAY TO CREATE AN ELEMENT AND GIVE IT SOME ATTRIBUTES AND CHILD NODES...
+
+function elemento(nombre, atributos, hijos)
+{
+    let dom = document.createElement(nombre);
+
+    for(let atributo of Object.keys(atributos))
+    {
+        dom.setAttribute(atributo, atributos[atributo]);
+    }
+
+    for(let hijo of hijos)
+    {
+        dom.appendChild(hijo);
+    }
+
+    return dom;
+}
