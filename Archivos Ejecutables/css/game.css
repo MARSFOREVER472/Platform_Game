@@ -1,1 +1,23 @@
-/* EN INSTANTES... */
+/* THE FOLLOWING CSS FILE MAKES THE TABLE LOOK LIKE THE BACKGROUND WE WANT... */
+
+.background
+{
+    background: rgb(52, 166, 251);
+    table-layout: fixed;
+    border-spacing: 0;
+}
+
+.background td
+{
+    padding: 0;
+}
+
+.lava
+{
+    background: rgb(255, 150, 0);
+}
+
+.wall
+{
+    background: grey;
+}
