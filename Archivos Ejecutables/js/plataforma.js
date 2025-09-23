@@ -26,16 +26,16 @@ class Nivel
         {
             return fila.map((ch, x) =>
             {
-                let tipo = nivelPersonajes[ch];
+                let type = nivelPersonajes[ch];
 
-                if (typeof tipo != "string")
+                if (typeof type != "string")
                 {
                     let posicion = new Vec(x, y);
-                    this.comienzoActores.push(tipo.create(posicion, ch));
-                    tipo = "empty";
+                    this.comienzoActores.push(type.create(posicion, ch));
+                    type = "empty";
                 }
 
-                return tipo;
+                return type;
             });
         });
     }
@@ -59,7 +59,7 @@ class Estado
 
     get jugador()
     {
-        return this.actores.find(a => a.tipo == "player");
+        return this.actores.find(a => a.type == "player");
     }
 }
 
@@ -119,7 +119,7 @@ class Lava
         this.reinicio = reinicio;
     }
 
-    get tipo() 
+    get type() 
     {
         return "lava";
     }
@@ -243,4 +243,16 @@ function dibujarCasilla(nivel)
             ...fila.map(type => elemento("td", {class: type}))
         ))
     );
+}
+
+function dibujarActores(actores)
+{
+    return elemento("div", {}, ...actores.map(actor => {
+        let rect = elemento("div", {class: `actor ${actor.type}`});
+        rect.style.width = `${actor.size.x * escala}px`;
+        rect.style.height = `${actor.size.y * escala}px`;
+        rect.style.left = `${actor.posicion.x * escala}px`;
+        rect.style.top = `${actor.posicion.y * escala}px`;
+        return rect;
+    }));
 }
