@@ -102,7 +102,7 @@ class Jugador
     static create(posicion)
     {
         return new Jugador(posicion.plus(new Vec(0, -0.5)),
-                           new Vec(0, 0));
+        new Vec(0, 0));
     }
 }
 
@@ -184,8 +184,12 @@ const nivelPersonajes = {
 };
 
 // THAT GIVES US ALL THE PARTS NEEDED TO CREATE A LEVEL INSTANCE...
+// WE ARE NOW ABLE TO DISPLAY OUR TINY LEVEL...
 
 let nivelSimple = new Nivel(planNivelSimple);
+let display = new DOMdisplay(document.body, nivelSimple);
+display.syncState(Estado.comenzar(nivelSimple));
+
 console.log(`${nivelSimple.anchura} by ${nivelSimple.altura}`);
 
 // 22 by 9...
@@ -311,3 +315,5 @@ DOMdisplay.proptotype.scrollPlayerIntoView = function(estadoActual)
         this.dom.scrollTop = centrado.y + margin - altura;
     }
 }
+
+
