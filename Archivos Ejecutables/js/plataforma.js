@@ -266,3 +266,48 @@ DOMdisplay.prototype.syncState = function(estadoActual)
     this.dom.className = `game ${estadoActual.estado}`;
     this.scrollPlayerIntoView(estadoActual);
 }
+
+// IN THE "scrollPlayerIntoView" METHOD, WE FIND THE PLAYER'S POSITION AND UPDATE THE WRAPPING ELEMENT'S SCROLL POSITION. WE CHANGE THE SCROLL POSITION BY MANIPULATING THAT ELEMENT'S "scrollLeft" AND "scrollTop" PROPERTIES WHEN THE PLAYER IS TOO CLOSE TO THE EDGE.
+
+DOMdisplay.proptotype.scrollPlayerIntoView = function(estadoActual)
+{
+    let anchura = this.dom.clientWidth;
+    let altura = this.dom.clientHeight;
+    let margin = anchura / 3;
+
+    // THE VIEWPORT:
+
+    let left = this.dom.scrollLeft, right = left + anchura;
+    let top = this.dom.scrollTop, bottom = top + altura;
+
+    let jugador = estadoActual.jugador;
+    let centrado = jugador.posicion.plus(jugador.size.times(0.5)).times(escala);
+
+    // POSICIÓN HORIZONTAL DEL JUEGO...
+
+    if (centrado.x < left + margin)
+    {
+        this.dom.scrollLeft = centrado.x - margin;
+    }
+
+    else
+
+    if (centrado.x > right - margin)
+    {
+        this.dom.scrollLeft = centrado.x + margin - anchura;
+    }
+
+    // POSICIÓN VERTICAL DEL JUEGO...
+
+        if (centrado.y < top + margin)
+    {
+        this.dom.scrollTop = centrado.y - margin;
+    }
+
+    else
+
+    if (centrado.y > bottom - margin)
+    {
+        this.dom.scrollTop = centrado.y + margin - altura;
+    }
+}

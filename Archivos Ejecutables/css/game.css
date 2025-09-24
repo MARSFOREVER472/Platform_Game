@@ -50,3 +50,13 @@
 {
     box-shadow: -4px -7px 8px white, -4px -7px 8px white;
 }
+
+/* The following CSS gives the game’s wrapping DOM element a maximum size and ensures that anything that sticks out of the element’s box is not visible. We also give it a relative position so that the actors inside it are positioned relative to the level’s upper-left corner. */
+
+.game
+{
+    overflow: hidden;
+    max-width: 600px;
+    max-height: 450px;
+    position: relative;
+}
