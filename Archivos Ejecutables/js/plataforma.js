@@ -336,6 +336,10 @@ Nivel.prototype.touches = function(posicion, size, type)
             return true;
         }
     }
-}
+
+    return false;
+};
+
+
 
 
