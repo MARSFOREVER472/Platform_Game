@@ -316,4 +316,26 @@ DOMdisplay.proptotype.scrollPlayerIntoView = function(estadoActual)
     }
 }
 
+// THIS METHOD TELLS US WHETHER A RECTANGLE (SPECIFIED BY A POSITION AND A SIZE) TOUCHES A GRID ELEMENT OF THE GIVEN TYPE.
+
+Nivel.prototype.touches = function(posicion, size, type)
+{
+    let comienzoX = Math.floor(posicion.x);
+    let finalX = Math.ceil(posicion.x + size.x);
+
+    let comienzoY = Math.floor(posicion.y);
+    let finalY = Math.ceil(posicion.y + size.y);
+
+    for (let y = comienzoY; y < finalY; y++)
+    {
+        for (let x = comienzoX; x < finalX; x++)
+        {
+            let afuera = x < 0 || x > this.anchura || y < 0 || y > this.altura;
+            let aqui = afuera ? "wall" : this.filas[y][x];
+            if (here == type)
+            return true;
+        }
+    }
+}
+
 
