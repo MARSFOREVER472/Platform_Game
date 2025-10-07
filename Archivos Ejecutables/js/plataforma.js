@@ -368,4 +368,14 @@ Estado.prototype.update = function(time, keys)
     return nuevoEstado;
 }
 
+// FUNCIÓN PARA TRASLAPAR ENTRE 2 PERSONAJES PRINCIPALES DEL JUEGO...
+
+function overlap(actor1, actor2)
+{
+    return actor1.posicion.x + actor1.size.x > actor2.posicion.x && 
+           actor1.posicion.x < actor2.posicion.x + actor2.size.x &&
+           actor1.posicion.y + actor1.size.y + actor2.posicion.y &&
+           actor1.posicion.y < actor2.posicion.y + actor2.size.y;
+}
+
 
