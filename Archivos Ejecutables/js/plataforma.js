@@ -340,6 +340,32 @@ Nivel.prototype.touches = function(posicion, size, type)
     return false;
 };
 
+// THE STATE "update" METHOD USES TOUCHES TO FIGURE OUT WHETHER THE PLAYER IS TOUCHING LAVA...
 
+Estado.prototype.update = function(time, keys)
+{
+    let actores = this.actores.map(actor => actor.update(time, this.keys));
+    let nuevoEstado = new Estado(this.nivel, actores, this.estado);
+
+    if (nuevoEstado.estadoActual != "playing")
+        return nuevoEstado;
+
+    let jugador = nuevoEstado.jugador;
+
+    if (this.nivel.touches(jugador.posicion, jugador.size, "lava"))
+    {
+        return new Estado(this.nivel, actores, "lost");
+    }
+
+    for (let actor of actores)
+    {
+        if (actor != jugador && overlap(actor, jugador))
+        {
+            nuevoEstado = actor.collide(nuevoEstado);
+        }
+    }
+
+    return nuevoEstado;
+}
 
 
