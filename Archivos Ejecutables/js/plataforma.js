@@ -395,3 +395,25 @@ Monedas.prototype.collide = function(estado)
     return new Estado(estadoActual.nivel, filtrado, estadoActual);
 };
 
+// FUNCIÓN PARA ACTUALIZAR LOS ACTORES DEL JUEGO...
+
+Lava.prototype.update = function(time, state)
+{
+    let newPos = this.posicion.plus(this.velocidad.times(time));
+
+    if (!state.nivel.touches(newPos, this.size, "wall"))
+    {
+        return new Lava(newPos, this.velocidad, this.reinicio);
+    }
+
+    else if (this.reinicio)
+    {
+        return new Lava(this.reinicio, this.velocidad, this.reinicio);
+    }
+
+    else
+    {
+        return new Lava(this.posicion, this.velocidad.times(-1));
+    }
+};
+
