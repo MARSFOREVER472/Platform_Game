@@ -417,3 +417,15 @@ Lava.prototype.update = function(time, state)
     }
 };
 
+// UTILIZANDO LA PROPIEDAD "wobble"...
+
+const wobbleSpeed = 8, wobbleDist = 0.07;
+
+Monedas.prototype.update = function(time)
+{
+    let wobble = this.wobble + time * wobbleSpeed;
+    let wobblePos = Math.sin(wobble) * wobbleDist;
+
+    return new Monedas(this.posicionBase.plus(new Vec(0, wobblePos)), this.posicionBase, wobble);
+};
+
